@@ -3,10 +3,10 @@ Projet de test pour découvrir les langages et outils que j’utiliserai lors de
 
 ## Langages et outils utilisé : 
 
-Backend : Java (17) + SpringBoot (4.0)
-Frontend : Vue.js 3 (+ Vuetify framework CSS)
-ORM : Hibernate
-BD : PostgresSQL (9.6)
+- Backend : Java (17) + SpringBoot (4.0)
+- Frontend : Vue.js 3 (+ Vuetify framework CSS)
+- ORM : Hibernate
+- BD : PostgresSQL (9.6)
 
 ## L’application est conteneurisée avec devcontainer.
 
