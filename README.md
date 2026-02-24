@@ -20,14 +20,14 @@ Projet de test pour découvrir les langages et outils que j’utiliserai lors de
 ### Backend : 
 
 ```
-cd /backend
+cd backend/
 mvn spring-boot:run 
 ```
 
 ### Frontend : 
 
 ```
-cd /frontend
+cd frontend/
 npm install
 npm run dev -- --host
 ```
