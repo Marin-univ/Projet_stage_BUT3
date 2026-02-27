@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +13,7 @@ import boutique.service.ProduitService;
 
 @RestController
 @RequestMapping("/api/produits")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 public class ProduitController {
 
     private final ProduitService service;
@@ -24,5 +25,10 @@ public class ProduitController {
     @GetMapping
     public List<Produit> getProduits() {
         return service.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Produit getProduitById(@PathVariable Long id) {
+        return service.getById(id);
     }
 }

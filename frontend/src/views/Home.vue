@@ -15,15 +15,24 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    <h1>TEST</h1>
+  <h1>Liste des articles disponibles :</h1>
+  <div class="grid">
     <ProductCard
       v-for="product in products"
       :key="product.id"
+      :id="product.id"
       :nom="product.nom"
       :prix="product.prix"
       :description="product.description"
-      :categorie="product.categorie"
     />
   </div>
 </template>
+
+<style>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+</style>
