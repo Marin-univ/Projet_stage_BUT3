@@ -5,7 +5,7 @@ const props = defineProps({
 })
 
 import { ref } from "vue";
-import { updateProduct } from "@/services/productService";
+import { updateProduct, deleteProduct } from "@/services/productService";
 
 const items = ["Type A", "Type B", "Type C"];
 const isEditing = ref(false);
@@ -20,12 +20,21 @@ function cancelEdit() {
   isEditing.value = false;
 }
 
-function saveEdit() {
+function save() {
   updateProduct(props.id, dataModif.value).then(() => {
     Object.assign(props.data, dataModif.value);
     isEditing.value = false;
   });
 }
+
+function deleteP() {
+  confirm("Êtes-vous sûr de vouloir supprimer ce produit ?") &&
+  deleteProduct(props.id).then(() => {
+    alert("Produit supprimé avec succès");
+    window.location.href = `/`;
+  });
+}
+
 </script>
 
 <template>
@@ -88,6 +97,9 @@ function saveEdit() {
             <v-btn color="primary" @click="startEdit">
                 Modifier
             </v-btn>
+            <v-btn color="red" @click="deleteP">
+                Suprimer
+            </v-btn>
         </div>
 
         <div v-else>
@@ -95,7 +107,7 @@ function saveEdit() {
                 Annuler
             </v-btn>
 
-            <v-btn color="green" @click="saveEdit">
+            <v-btn color="green" @click="save">
                 Sauvegarder
             </v-btn>
         </div>

@@ -27,3 +27,13 @@ export async function updateProduct(id, data) {
         body: JSON.stringify(data)
     });
 }
+
+export async function deleteProduct(id) {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/produits/${id}`, {
+        method: "DELETE"
+    });
+
+    if (!response.ok) {
+        throw new Error("Erreur lors de la suppression du produit");
+    }
+}

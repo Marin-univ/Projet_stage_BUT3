@@ -37,4 +37,11 @@ public class ProduitService {
 
         return repository.save(produit);
     }
+
+    public void delete(Long id) {
+    if (!repository.existsById(id)) {
+        throw new RuntimeException("Produit non trouvé");
+    }
+    repository.deleteById(id);
+}
 }
