@@ -1,3 +1,33 @@
+<script setup>
+const props = defineProps({
+  id: Number,
+  data: Object
+})
+
+import { ref } from "vue";
+import { updateProduct } from "@/services/productService";
+
+const items = ["Type A", "Type B", "Type C"];
+const isEditing = ref(false);
+const dataModif = ref({});
+
+function startEdit() {
+  Object.assign(dataModif.value, props.data);
+  isEditing.value = true;
+}
+
+function cancelEdit() {
+  isEditing.value = false;
+}
+
+function saveEdit() {
+  updateProduct(props.id, dataModif.value).then(() => {
+    Object.assign(props.data, dataModif.value);
+    isEditing.value = false;
+  });
+}
+</script>
+
 <template>
   <v-card class="product-card" max-width="520">
     <v-card-title class="text-h5 font-weight-bold">
@@ -6,7 +36,7 @@
 
     <v-divider></v-divider>
 
-    <v-card-text class="text-body-1">
+    <v-card-text class="text-body-1" v-if="!isEditing">
       <div class="mb-3">
         {{ data.description }}
       </div>
@@ -22,21 +52,58 @@
       <p class="right">x {{ data.quantite }}</p>
     </v-card-text>
 
+    <v-card-text class="text-body-1" v-else>
+      <v-text-field
+      v-model="dataModif.nom"
+      label="Nom"
+      ></v-text-field>
+
+      <v-text-field
+      v-model="dataModif.description"
+      label="Description"
+      ></v-text-field>
+
+      <v-text-field
+      v-model="dataModif.prix"
+      label="Prix"
+      ></v-text-field>
+
+      <v-select
+      v-model="dataModif.type"
+      :items="items"
+      label="Type"
+      ></v-select>
+
+      <v-text-field
+      v-model="dataModif.quantite"
+      label="Quantité"
+      ></v-text-field>
+
+    </v-card-text>
+
     <v-divider></v-divider>
 
     <v-card-actions>
-        <v-btn color="primary" 
-        >modifier</v-btn>
+        <div v-if="!isEditing">
+            <v-btn color="primary" @click="startEdit">
+                Modifier
+            </v-btn>
+        </div>
+
+        <div v-else>
+            <v-btn color="red" @click="cancelEdit">
+                Annuler
+            </v-btn>
+
+            <v-btn color="green" @click="saveEdit">
+                Sauvegarder
+            </v-btn>
+        </div>
     </v-card-actions>
   </v-card>
 </template>
 
-<script setup>
-defineProps({
-  id: Number,
-  data: Object
-})
-</script>
+
 
 <style scoped>
 .product-card {

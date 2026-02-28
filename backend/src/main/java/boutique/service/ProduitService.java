@@ -25,4 +25,16 @@ public class ProduitService {
     public Produit getById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé"));
     }
+
+    public Produit update(Long id, Produit data) {
+        Produit produit = repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+
+        produit.setNom(data.getNom());
+        produit.setDescription(data.getDescription());
+        produit.setPrix(data.getPrix());
+        produit.setType(data.getType());
+        produit.setQuantite(data.getQuantite());
+
+        return repository.save(produit);
+    }
 }
