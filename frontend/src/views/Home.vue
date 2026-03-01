@@ -25,6 +25,14 @@ onMounted(async () => {
       :prix="product.prix"
       :description="product.description"
     />
+    <v-card>
+      <v-card-title class="text-h5 font-weight-bold">
+        Ajouter un produit
+      </v-card-title>
+      <v-card-actions>
+        <v-btn color="primary" :to="`/add`">Ajouter</v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
