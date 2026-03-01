@@ -39,10 +39,7 @@ function deleteP() {
 
 <template>
   <v-card class="product-card" max-width="520">
-    <v-card-title class="text-h5 font-weight-bold">
-      {{ data.nom }}
-    </v-card-title>
-
+    <v-card-title>{{ data.nom }}</v-card-title>
     <v-divider></v-divider>
 
     <v-card-text class="text-body-1" v-if="!isEditing">
@@ -94,12 +91,12 @@ function deleteP() {
 
     <v-card-actions>
         <div v-if="!isEditing">
-            <v-btn color="primary" @click="startEdit">
-                Modifier
-            </v-btn>
-            <v-btn color="red" @click="deleteP">
-                Suprimer
-            </v-btn>
+          <v-btn color="primary" @click="startEdit">
+            Modifier
+          </v-btn>
+          <v-btn color="red" @click="deleteP">
+            Supprimer
+          </v-btn>
         </div>
 
         <div v-else>
@@ -113,6 +110,9 @@ function deleteP() {
         </div>
     </v-card-actions>
   </v-card>
+  <v-btn color="secondary" @click="$router.go(-1)" class="mt-4">
+    Retour
+  </v-btn>
 </template>
 
 
@@ -125,4 +125,5 @@ function deleteP() {
 .right {
   text-align: right;
 }
+
 </style>

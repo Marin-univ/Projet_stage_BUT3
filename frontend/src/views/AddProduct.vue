@@ -32,6 +32,7 @@ async function submit() {
 
   await createProduct(state)
   alert("Produit ajouté avec succès")
+  window.location.href = "/"
 }
 </script>
 
@@ -79,8 +80,11 @@ async function submit() {
         />
 
         <div class="d-flex justify-center">
-          <v-btn color="green" type="submit" min-width="50%">
+          <v-btn color="green" type="submit" min-width="35%" class="mr-4">
             Ajouter
+          </v-btn>
+          <v-btn color="primary" type="button" min-width="35%" @click="$router.go(-1)">
+            retour
           </v-btn>
         </div>
       </form>
